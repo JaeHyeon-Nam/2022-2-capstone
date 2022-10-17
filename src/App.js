@@ -1,171 +1,34 @@
-import React, { useState, Suspense } from "react";
-import './css/styles.css'
-import App2 from "./component/App2"
-
-
-const Sidebar = React.lazy(() => import("./component/Sidebar"));
-
-
-
-
-
-let data = [
-  {
-    name: "Home",
-    icon: "home.png",
-    link: "/customermanagement",
-    options: [
-      {
-        name: "Branch Management",
-        icon: "ico_branchmgmt.png",
-        link: "/branchmanagement",
-        menuItem: false
-      },
-      {
-        name: "Merchant Management",
-        icon: "ico_merchant.png",
-        link: "/merchantmanagement",
-        menuItem: false
-      }
-    ],
-    menuItem: true
-  },
-  {
-    name: "MyPage",
-    icon: "user.png",
-    link: "/programmanagement",
-    options: [
-      {
-        name: "Branch Management",
-        icon: "ico_branchmgmt.png",
-        link: "/branchmanagement",
-        menuItem: false
-      },
-      {
-        name: "Merchant Management",
-        icon: "ico_merchant.png",
-        link: "/merchantmanagement",
-        menuItem: false
-      }
-    ],
-    menuItem: true
-  },
-  {
-    name: "Cart",
-    icon: "shopping.png",
-    link: "/usermanagement",
-    options: [
-      {
-        name: "Branch Management",
-        icon: "ico_branchmgmt.png",
-        link: "/branchmanagement",
-        menuItem: false
-      },
-      {
-        name: "Merchant Management",
-        icon: "ico_merchant.png",
-        link: "/merchantmanagement",
-        menuItem: false
-      }
-    ],
-    menuItem: true
-  },
-  {
-    name: "QR",
-    icon: "qr-code.png",
-    link: "/entitymanagement",
-    options: [
-      {
-        name: "Used",
-        icon: "used.png",
-        link: "/branchmanagement",
-        menuItem: true
-      },
-      {
-        name: "Not Using",
-        icon: "notusing.png",
-        link: "/merchantmanagement",
-        menuItem: true
-      }
-    ],
-    menuItem: true
-  },
-  {
-    name: "Community",
-    icon: "community.png",
-    link: "/entitymanagement",
-    options: [
-      {
-        name: "Used",
-        icon: "used.png",
-        link: "/branchmanagement",
-        menuItem: false
-      },
-      {
-        name: "Not Using",
-        icon: "notusing.png",
-        link: "/merchantmanagement",
-        menuItem: false
-      }
-    ],
-    menuItem: true
-  },
-  {
-    name: "Map",
-    icon: "map.png",
-    link: "/entitymanagement",
-    options: [
-      {
-        name: "Used",
-        icon: "used.png",
-        link: "/branchmanagement",
-        menuItem: false
-      },
-      {
-        name: "Not Using",
-        icon: "notusing.png",
-        link: "/merchantmanagement",
-        menuItem: false
-      }
-    ],
-    menuItem: true
-
-  }
-];
-
-
+import './styles/main.scss'
+import {useState} from 'react'
+import SideMenu from './component/SideMenu'
+import Home from './pages/Home'
+import Community from './pages/Community'
+import Login from './pages/Login'
+import Join from './pages/Join'
+import Mypage from './pages/Mypage'
+import TicketPage from './pages/TicketPage'
+import QRCode from "react-qr-code";
 
 function App() {
-  const [sidebar, setSidebar] = useState(true);
-  const [minibar, setMinibar] = useState(true);
+    const [menuPtr, setMenuPtr] = useState(0)
+    const [isLogin,setIsLogin] = useState(false)
+    const [isJoin,setIsJoin] = useState(true)
 
-  const [openDrawer, updateDrawer] = useState(false);
-
-
-  const toggleSidebar = bool => {
-    setSidebar(bool);
-  };
-
-  const toggleMinibar = bool => {
-    setMinibar(bool);
-  };
-
-  return (
-    <div className="App">
-
-
-      <Suspense fallback={<h6>Loading</h6>}>
-        <Sidebar
-          items={data}
-          sidebar={sidebar}
-          minibar={minibar}
-          setMinibar={toggleMinibar}
-        />
-      </Suspense>
-      <App2/>
-    
-    </div>
-  );
+    return (
+        <div className="App">
+            {
+                !isLogin && <Login setIsLogin={setIsLogin}></Login>
+            }
+            {
+                !isJoin && <Join setIsJoin={setIsJoin}></Join>
+            }
+            <SideMenu menuPtr={menuPtr} setMenuPtr={setMenuPtr} isLogin={isLogin} setIsLogin={setIsLogin}></SideMenu>
+            {menuPtr === 0 && <Home setIsJoin={setIsJoin}></Home>}
+            {menuPtr === 1 && <Mypage></Mypage>}
+            {menuPtr === 3 && <TicketPage></TicketPage>}
+            {menuPtr === 4 && <Community></Community>}
+        </div>
+    );
 }
 
 export default App;
