@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Join from './pages/Join'
 import Mypage from './pages/Mypage'
 import TicketPage from './pages/TicketPage'
+import Map from './pages/map/Map'
 import QRCode from "react-qr-code";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             {menuPtr === 1 && <Mypage></Mypage>}
             {menuPtr === 3 && <TicketPage></TicketPage>}
             {menuPtr === 4 && <Community></Community>}
+            {menuPtr === 5 && <Map></Map>}
         </div>
     );
 }
