@@ -7,7 +7,25 @@ export default function Join(props) {
     const [joinMenuPtr, setJoinMenuPtr] = useState(0)
     const [questionPtr, setquestionPtr] = useState(0)
     const [canNext, setCanNext] = useState(true)
+    const questions = [{
+        id: '1', title: '주기적으로 새로운 친구를 만드는 것을 좋아하나요?'
+    }, {
+        id: '2', title: '자유 시간 중 상당 부분을 다양한 관심사를 탐구하는 데에 할애하나요?'
+    }, {
+        id: '3', title: '다른 사람이 울고 있는 모습을 보면 따라 울고 싶어지나요?'
+    }, {
+        id: '4', title: '일이 잘못될 때를 대비해 여러 대비책을 세워 두시나요?'
+    }, {
+        id: '5', title: '압박감이 심한 환경에서도 평정심을 유지하시나요?'
+    }, {
+        id: '6', title: '파티나 행사에서 새로운 사람보단 이미 알고 있는 사람과 대화하는 편인가요?'
+    }, {
+        id: '7', title: '하던 일을 완전히 마친 후에야 다른 일을 시작하는 편인가요?'
+    }, {
+        id: '8', title: '일정이나 목록으로 계획을 세우는 걸 좋아하시나요?'
+    },
 
+    ]
     useEffect(() => {
         const joinMenus = document.querySelectorAll('.joinMenu>li')
         joinMenus.forEach((el, index) => {
@@ -21,9 +39,10 @@ export default function Join(props) {
             props.setIsJoin(false)
         }}>close</span>
         <div className="joinForm">
-            <div className="btnClose material-symbols-outlined" onClick={()=>{
+            <div className="btnClose material-symbols-outlined" onClick={() => {
                 props.setIsJoin(true)
-            }}>close</div>
+            }}>close
+            </div>
             <div className="inner">
                 <ul className="joinMenu">
                     <li>
@@ -99,30 +118,29 @@ export default function Join(props) {
                                     }} onBlur={(e) => {
                                         e.target.value === "" && document.querySelector('#labelPwConfirm').classList.remove('focused')
                                     }} onKeyUp={(e) => {
-                                        (e.target.value !== "" && e.target.value === document.querySelector('#inputPw').value) ?
-                                            setTimeout(() => {
-                                                canNext && setJoinMenuPtr(2)
-                                            }, 1000) :
-                                            setTimeout(() => {
-                                                document.querySelector('.pwConMsg').classList.add('active')
-                                            }, 1000)
+                                        (e.target.value !== "" && e.target.value === document.querySelector('#inputPw').value) ? setTimeout(() => {
+                                            canNext && setJoinMenuPtr(2)
+                                        }, 1000) : setTimeout(() => {
+                                            document.querySelector('.pwConMsg').classList.add('active')
+                                        }, 1000)
                                     }}/>
                                     <p className="pwConMsg">비밀번호를 확인해주세요!</p>
                                 </div>
                             </div>
                         </div> : joinMenuPtr === 2 ? <div className="contentBox">
                             <ul className="tendencyBox">
-                                <li className="tendencyEl focus">
-                                    <p className="question">질문</p>
-                                    <p className="response">응답</p>
-                                </li>
-                                <li className="tendencyEl">질문2</li>
-                                <li className="tendencyEl">질문3</li>
-                                <li className="tendencyEl">질문4</li>
-                                <li className="tendencyEl">질문5</li>
-                                <li className="tendencyEl">질문6</li>
-                                <li className="tendencyEl">질문7</li>
-                                <li className="tendencyEl">질문8</li>
+                                {questions.map((q, index) => {
+                                    return (<li className="tendencyEl focus" key={q.id}>
+                                        <p className="question">{q.id+'. '+q.title}</p>
+                                        <input type="range" max="7" className="response" onChange={(e) => {
+                                            e.target.style.accentColor = e.target.value > 5 ? '#FC5230' :
+                                                e.target.value > 2 ? '#FD8A69' : '#FECCBE'
+                                        }}></input>
+                                    </li>)
+                                })}
+                                <button className="btnSubmit" onClick={()=>{
+                                    setJoinMenuPtr(joinMenuPtr+1)
+                                }}>완 료</button>
                             </ul>
                         </div> : <div className="contentBox">
                             <img className="logo" src={logo} alt="logo"/>

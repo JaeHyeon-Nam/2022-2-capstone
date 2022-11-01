@@ -12,7 +12,7 @@ export default function PlacePage(props){
             <div className="inner">
                 <div className="placeInfo">
                     <p className="placeName">트립윗미 여행지</p>
-                    <p className="placeLocation">충북 청주시 우리집</p>
+                    <p className="placeLocation">전남 여수시</p>
                     <p className="placePoint">★ 4.9</p>
                     <p className="placeBtnBox">
                         <button className="btnReserve btn">빠른예약</button>

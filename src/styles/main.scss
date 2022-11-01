@@ -509,7 +509,9 @@
           width: 8vw;
           height: 8vw;
           border-radius: 50%;
-          background-color: greenyellow;
+          background-image: url('../images/KwonEunchan.jpg');
+          background-size: cover;
+          background-position: center;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -591,6 +593,9 @@
               height: 3vw;
               border-radius: 50%;
               background-color: black;
+              background-image: url('../images/KwonEunchan.jpg');
+              background-size: cover;
+              background-position: center
             }
 
             .profileInfo {
@@ -643,7 +648,9 @@
         .postImage {
           width: 12vw;
           height: 12vw;
-          background-color: black;
+          background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5566%2F2021%2F10%2F28%2F0000059351_001_20211028172203073.png&type=sc960_832');
+          background-size: cover;
+          background-position: center
         }
       }
     }
@@ -840,7 +847,7 @@
   height: 100vh;
   position: fixed;
   background-color: rgba(black, .4);
-  z-index: 1;
+  z-index: 3;
 
   .loginForm {
     position: absolute;
@@ -1211,12 +1218,13 @@
     justify-content: center;
     align-items: center;
 
-    .btnClose{
+    .btnClose {
       position: absolute;
       top: 1vw;
       right: 1vw;
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         font-weight: 700;
       }
     }
@@ -1273,7 +1281,7 @@
           width: 90%;
           height: 90%;
 
-          .contentBox{
+          .contentBox {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1320,19 +1328,21 @@
                 font-weight: 600;
               }
             }
-            .inputContainer{
+
+            .inputContainer {
               width: 100%;
               height: 100%;
               display: flex;
               flex-direction: column;
               justify-content: space-around;
             }
-            .inputEl{
+
+            .inputEl {
               width: 80%;
               height: 15%;
               position: relative;
 
-              >label{
+              > label {
                 position: absolute;
                 display: flex;
                 align-items: center;
@@ -1341,42 +1351,45 @@
                 margin: auto;
                 font-size: 2vw;
                 transition: .2s;
-                color: rgba(black,.2);
+                color: rgba(black, .2);
                 height: 30%;
 
-                &.focused{
+                &.focused {
                   font-size: 1vw;
                   font-weight: 700;
                   top: -100%;
                   color: $main-color;
                 }
               }
-              .inputBox{
+
+              .inputBox {
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 border: none;
                 outline: none;
                 font-size: 2vw;
-                border-bottom: 1px solid rgba(black,.2);
+                border-bottom: 1px solid rgba(black, .2);
                 background-color: transparent;
 
-                &:focus{
+                &:focus {
                   border-bottom: 1.5px solid $main-color;
                 }
               }
             }
-            .pwConMsg{
+
+            .pwConMsg {
               position: absolute;
               bottom: -30%;
               color: transparent;
               font-size: .5vw;
 
-              &.active{
+              &.active {
                 color: $main-color;
               }
             }
-            .tendencyBox{
+
+            .tendencyBox {
               width: 100%;
               height: 100%;
               list-style: none;
@@ -1384,24 +1397,46 @@
               top: 0;
               overflow-y: scroll;
 
-              li{
+              li {
                 height: 20vh;
                 cursor: pointer;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
 
-                .question{
-                  font-weight: 700;
+                .response {
+                  accent-color: #FC5230;
+                  background-color: rgba(black, .1);
                 }
 
-                &.focus{
-                  color: rgba(black,2);
+                .question {
+                  font-weight: 700;
+                  font-size: 1.35vw;
                 }
+              }
+              .btnSubmit{
+                width: 20%;
+                height: 8%;
+                font-weight: 700;
+                border: none;
+                position: absolute;
+                left: 0;
+                right: 0;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: auto;
+                transition: .5s;
+                color: white;
+                border: 2px solid transparent;
+                background-color: $main-color;
 
                 &:hover{
-                  background-color: rgba(black,.1);
+                  color: $main-color;
+                  border: 2px solid $main-color;
+                  background-color: white;
                 }
+
+
               }
             }
           }
@@ -1411,12 +1446,12 @@
   }
 }
 
-#ticketPage{
+#ticketPage {
   width: 95vw;
   height: 100vh;
   background-color: black;
 
-  .ticketList{
+  .ticketList {
     width: 50%;
     height: 100vh;
     background-color: red;
@@ -1427,7 +1462,7 @@
     justify-content: center;
     align-items: center;
 
-    .inner{
+    .inner {
       height: 90%;
     }
   }
